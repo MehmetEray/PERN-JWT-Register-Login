@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const pool = require("../../database");
-const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../middleware/validInfo");
+const jwtGenerator = require("../utils/jwtGenerator");
+const authorize = require("../middleware/authorize");
+
 //authorizeentication
 
 router.post("/register", validInfo, async (req, res) => {
-    const { name, email, password } = req.body;
+    const { email, name, password } = req.body;
 
     try {
         const user = await pool.query(
@@ -29,7 +31,6 @@ router.post("/register", validInfo, async (req, res) => {
 
         const jwtToken = jwtGenerator(newUser.rows[0].user_id);
 
-        console.log(jwtToken);
         return res.json({ jwtToken });
     } catch (err) {
         console.error(err.message);
@@ -66,13 +67,13 @@ router.post("/login", validInfo, async (req, res) => {
     }
 });
 
-// router.post("/verify", authorize, (req, res) => {
-//     try {
-//         res.json(true);
-//     } catch (err) {
-//         console.error(err.message);
-//         res.status(500).send("Server error");
-//     }
-// });
+router.post("/verify", authorize, (req, res) => {
+    try {
+        res.json(true);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+});
 
 module.exports = router;

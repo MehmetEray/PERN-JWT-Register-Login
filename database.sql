@@ -17,4 +17,4 @@ CREATE TABLE todo(
 );
 
 
-INSERT INTO users (user_name, user_email, user_password) VALUES ('henry', 'henryly213@gmail.com', 'kthl8822');
+INSERT INTO users (user_name, user_email, user_password) VALUES ('eray', 'eray@gmail.com', 'nodejs');
