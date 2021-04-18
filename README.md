@@ -1,5 +1,5 @@
 # PERN-JWT-Register-Login System
-## PostgreSQL Express.js React.js Node.js JsonWebToken dotenv React-router-dom  React-tostify 
+## PostgreSQL - Express.js - React.js - Node.js - JsonWebToken for Authentication - dotenv - React-router-dom - React-tostify 
 
 ### npm install
 ### npm run server => run backend server
